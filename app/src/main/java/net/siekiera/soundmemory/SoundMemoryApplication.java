@@ -4,31 +4,23 @@ import android.app.Application;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Wociech Siekiera on 01.04.2017.
  */
 
 public class SoundMemoryApplication extends Application {
-    private ArrayList<Card> cards = new ArrayList<Card>();
+    private GameState gameState;
 
     @Override
     public void onCreate() {
+        gameState = new GameState(this);
         super.onCreate();
-        fillCardsArray(cards);
+        gameState.initialize();
     }
 
-    public void fillCardsArray(ArrayList<Card> cardArrayList) {
-        ArrayList<Integer> obverses = new ArrayList<Integer>();
-        obverses.add(R.drawable.a);
-        obverses.add(R.drawable.b);
-        obverses.add(R.drawable.c);
-        obverses.add(R.drawable.d);
-        obverses.add(R.drawable.e);
-        obverses.add(R.drawable.f);
-        for (Integer obverse : obverses) {
-            cardArrayList.add(new Card(obverse));
-            cardArrayList.add(new Card(obverse));
-        }
+    public GameState getGameState() {
+        return gameState;
     }
 }
